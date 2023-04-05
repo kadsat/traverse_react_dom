@@ -3,20 +3,24 @@
   </head>
     <body>
         <input id='_zip' type="number"></input>
-        <button onClick = validate_zip_cd()>validate</button>
+        <button onClick = isValidZipCd()>validate</button>
     </body>
     <script>
-        function validate_zip_cd(){
+        function isValidZipCd(){
             const element = document.getElementById('_zip');
             var zip_cd = element.value;
             if (
                 (zip_cd.length == 5 || zip_cd.length == 9) && 
                 !!parseInt(zip_cd)
             ){
-                console.log('Valid zip code!!');
+                if (zip_cd.length == 9){
+                    return zip_cd.slice(5,9) in {'0000':'','9999':''}? 
+                        false : true;
+                }
+                return true;
             }
             else {
-                console.log('Invalid zip code');
+                return false;
             }
         }
     </script>
