@@ -25,3 +25,20 @@ function traverseComponent(component) {
 
   return outputObject;
 }
+
+
+function ParentComponent() {
+  const [parentState, setParentState] = useState("");
+
+  function handleInputChange(event) {
+    setParentState(event.target.value);
+  }
+
+  return (
+    <div>
+      <ChildComponent />
+      <input type="text" value={parentState} onChange={handleInputChange} />
+      <pre>{JSON.stringify(traverseComponent(this), null, 2)}</pre>
+    </div>
+  );
+}
